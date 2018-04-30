@@ -1,6 +1,6 @@
 <h1>Effective Programming in C and Unix</h1>
-<h2>School of Computer Science, Carnegie Mellon University</h2>
-<h2>Course Description: 15-123 Effective Programming in C and UNIX</h2>
+<h3>School of Computer Science, Carnegie Mellon University</h3>
+<pre>Course Description: 15-123 Effective Programming in C and UNIX
 All Semesters: 9 units
 This course is designed to provide a substantial exposure to the C programming language
 and the Unix programming environment for students with some prior programming
@@ -26,4 +26,4 @@ will use the gcc compiler and it's debugger gbd. The use of simple make files wi
 emphasized. We assume that you have taken at least one programming course and you
 are comfortable working with a compiler and also debugging programs. As such the
 depth and rigor of the course will be more than a typical intro course. You are expected to
-devote a considerable amount of time to plan, develop, test and debug your code.
+devote a considerable amount of time to plan, develop, test and debug your code.<br /><br />Course link:<br />https://www.cs.cmu.edu/~guna/15-123S11/</pre>
