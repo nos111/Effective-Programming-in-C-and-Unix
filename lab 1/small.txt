@@ -1,0 +1,55 @@
+Due Date: Sunday January 23 2011 by 11:59pm
+Important: You must log hours and commands that was needed to
+complete this assignment. This is required as part of the submission. Please
+write the date and hours spent on the selflog.txt in the given format. Also
+you SHOULD develop your program on andrew.unix.cmu.edu and
+BEFORE each session, type: (this will start recording your commands and
+output to the file session1.txt)
+script session1.txt
+Before you end the program development session:
+cntrl-D
+This will end the session and save all commands and output to session1.txt
+Do this for all sessions.
+You can clean up any commands that were not part of your C program
+development.
+All files: session1.txt, session2.txt, …., lab1-selflog.txt are REQUIRED to
+get 3 points. These log files together with your source code *.c files should
+be submitted to handin for each assignment.
+Objectives:
+Lab1 requires you to read and process command line arguments, open files for reading
+and writing, use a static 2D C array of chars to store the file of data and write a simple
+algorithm for insertion sort. You will also learn how to use time functions to get runtime
+approximations and understand strings in C to compare and sort. No dynamic memory
+allocation is needed in this first lab.
+The Assignment:
+The purpose of this program is to write a C program that reads in a text file no larger than
+dictionary.txt (use wc command in unix to get word count. Eg: wc dictionary.txt) and
+stores each word in a row of a 2D char array. Since the storage array is static, you need to
+decide how big to make it at compile time, not runtime. No word in the file is longer than
+31 characters. We know that this is a gross waste of space for a small file such as
+small.txt but you will get your chance at dynamic memory and efficiency shortly.
+You will be using command line arguments to perform various operations on the file. For
+example, -s options allows you to read and sort the dictionary file into the array, keep it
+sorted as you go. Don't load first and sort later! Be sure you sort it AS you load. 
+Essentially do an insertion sort. See insertion sort logic in the write up given in this
+folder. You will also get a chance to look at insertion sort applied to integers in a skills
+lab or in a recitation. Do not copy quicksort or other sorting code from the web just to get
+the fastest load. You will be penalized for making it run faster ☺. You will get a chance
+to improve a lot in Lab2
+ours on the selflog.txt file
+and submit at the end). You also need to submit each session log files.
+If you’d like to see an example, see the folder called samplelogfiles that is given with
+your starter code.
+Solution Executable: See solution executable (named solution) to see how your
+program should run. Do not submit this executable with your code.
+Commenting your code: Not necessary for this lab. But we will require you to comment
+code as we progress.
+Handing in your Solution
+Your solution must be in the form of a .zip file. Just hand in all the .c files in your
+program (This program has only one source file and the file must be named lab1.c).
+Don't hand in input, obj or exe files. DO NOT handin dictionary.txt. You need to
+follow these directions or you may lose style points.
+You need to submit your solution through AFS. Your TA’s will show you how to do this
+in recitation or ask. The zip file needs to be submitted to
+/afs/andrew.cmu.edu/course/15/123/handin/lab1/yourid
+The handin folder will not be accessible after 48 hours from the due date/time. 

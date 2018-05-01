@@ -1,0 +1,8 @@
+Script started on ma 30 apr 2018 14:55:46 CEST
+]0;nour@nour-Latitude-E6430: ~/Desktop/effectiveC/lab 1[01;32mnour@nour-Latitude-E6430[00m:[01;34m~/Desktop/effectiveC/lab 1[00m$ cd ..
+]0;nour@nour-Latitude-E6430: ~/Desktop/effectiveC[01;32mnour@nour-Latitude-E6430[00m:[01;34m~/Desktop/effectiveC[00m$ cd lab\ 1
+]0;nour@nour-Latitude-E6430: ~/Desktop/effectiveC/lab 1[01;32mnour@nour-Latitude-E6430[00m:[01;34m~/Desktop/effectiveC/lab 1[00m$ ls
+lab1.c  lab1.pdf  session1.txt
+]0;nour@nour-Latitude-E6430: ~/Desktop/effectiveC/lab 1[01;32mnour@nour-Latitude-E6430[00m:[01;34m~/Desktop/effectiveC/lab 1[00m$ exit
+
+Script done on ma 30 apr 2018 14:55:59 CEST
