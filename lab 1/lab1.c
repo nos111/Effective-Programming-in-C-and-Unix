@@ -2,8 +2,13 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <string.h>
 
 void readWrite(char * inputfile, char * outputfile, int time) {
+  clock_t start, end;
+  if(time) {
+    start = clock(); 
+  }
   int wordCount = 0;
   int cellsNum = 500000;
   FILE * fp = fopen(inputfile, "r");
@@ -29,8 +34,12 @@ void readWrite(char * inputfile, char * outputfile, int time) {
   fclose(fp);
   fclose(outputFP);
   free(buff);
+  if(time) {
+    end = clock();
+    int cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("The time in seconds is %d", cpu_time_used);
+  }
   return;
-  
   /*
   int i = 0;
   while(fscanf(fp,"%s", buff) > 0 ) {
@@ -52,18 +61,22 @@ int main(int argc, char * argv[]) {
     case 3: 
       inputFile = argv[1];
       outputFile = argv[2];
-      clock_t start, end;
-      start = clock(); 
       readWrite(inputFile, outputFile, 0);
-      end = clock();
-      int cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-      printf("The time in seconds is %d", cpu_time_used);
-
       break;
     case 4: 
-      inputFile = argv[1];
-      outputFile = argv[2];
-      mode1 = argv[3];
+      inputFile = argv[2];
+      outputFile = argv[3];
+      mode1 = argv[1];
+      //printf("the compare results is %d",strcmp(mode1, "-t"));
+
+      if (strcmp(mode1, "-s") == 0) {
+        //readSortWrite();
+      } else if (strcmp(mode1, "-t") == 0) {
+        readWrite(inputFile, outputFile, 1);
+      } else {
+        printf("Unknown mode \n");
+
+      }
       break;
     case 5: 
       inputFile = argv[1];
@@ -76,5 +89,7 @@ int main(int argc, char * argv[]) {
 
 
   }
+
+  return 0;
 
 }
