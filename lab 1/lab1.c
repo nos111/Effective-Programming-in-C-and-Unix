@@ -49,7 +49,52 @@ void readWrite(char * inputfile, char * outputfile, int time) {
   */
   
 };
-void readSortWrite();
+
+void readSortWrite(char * inputfile, char * outputfile, int time) {
+  clock_t start, end;
+  if(time) {
+    start = clock(); 
+  }
+  int wordCount = 0;
+  int cellsNum = 500000;
+  FILE * fp = fopen(inputfile, "r");
+  FILE * outputFP = fopen(outputfile, "w");
+  if(fp == NULL || outputFP == NULL) {
+    printf("There was an error reading from source file");
+  }
+  char ** buff= (char**)malloc(sizeof(char*)* cellsNum);
+  int temp = 0;
+  for(size_t i = 0;i < cellsNum ;i++){
+    wordCount++;
+    buff[i] = (char*)malloc(100);
+    //read a word
+    temp = fscanf(fp,"%s", buff[i]);
+    if(temp <= 0) {
+      free(buff[i]);
+      break;
+    }
+    //find its place using binary search
+
+    //copy the array
+    //insert
+    //write to the file when done
+
+    //printf(" %d ", temp);
+    fprintf(outputFP, "%s \n", buff[i]);
+    free(buff[i]);
+  }
+  printf("the words total is %u \n",wordCount);
+  fclose(fp);
+  fclose(outputFP);
+  free(buff);
+  if(time) {
+    end = clock();
+    int cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("The time in seconds is %d", cpu_time_used);
+  }
+  return;
+
+};
 
 int main(int argc, char * argv[]) {
   char * inputFile, * outputFile, * mode1, * mode2;
@@ -75,7 +120,6 @@ int main(int argc, char * argv[]) {
         readWrite(inputFile, outputFile, 1);
       } else {
         printf("Unknown mode \n");
-
       }
       break;
     case 5: 
