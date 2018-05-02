@@ -49,6 +49,20 @@ void readWrite(char * inputfile, char * outputfile, int time) {
   */
   
 };
+int findInsertLocation(char ** wordsArray, char * wordToInsert, int arrLenght){
+  for(size_t i = 0; i < arrLenght; i++) {
+    if(strcmp(wordToInsert, wordsArray[i]) <= 0) return i;
+  }
+  return 0;
+};
+
+void copyArrayItems(char ** wordsArray, int startLocation, int arrUsedSpace) {
+  char * temp = wordsArray[startLocation];
+  char * temp2;
+  for(size_t i = arrUsedSpace; i > startLocation; i--) {
+   wordsArray[i] = wordsArray[i - 1];
+  }
+};
 
 void readSortWrite(char * inputfile, char * outputfile, int time) {
   clock_t start, end;
@@ -62,36 +76,46 @@ void readSortWrite(char * inputfile, char * outputfile, int time) {
   if(fp == NULL || outputFP == NULL) {
     printf("There was an error reading from source file");
   }
-  char ** buff= (char**)malloc(sizeof(char*)* cellsNum);
+  char ** buff = (char**)malloc(sizeof(char*)* cellsNum);
   int temp = 0;
+  char * tempWord = (char*) malloc(100);
   for(size_t i = 0;i < cellsNum ;i++){
     wordCount++;
     buff[i] = (char*)malloc(100);
+    
     //read a word
-    temp = fscanf(fp,"%s", buff[i]);
+    temp = fscanf(fp,"%s", tempWord);
     if(temp <= 0) {
-      free(buff[i]);
+      //free(buff[i]);
       break;
     }
-    //find its place using binary search
-
+    //find insert location
+    int insertLocation = findInsertLocation(buff, tempWord, wordCount);
+    //printf("The insert location is %d \n", insertLocation);
     //copy the array
+    copyArrayItems(buff, insertLocation, wordCount);
     //insert
-    //write to the file when done
-
-    //printf(" %d ", temp);
-    fprintf(outputFP, "%s \n", buff[i]);
-    free(buff[i]);
+    buff[insertLocation] = tempWord;
   }
+  //write to the file when done
+  for(size_t i = 0; i < wordCount; i++) {
+    fprintf(outputFP, "%s \n", buff[i]);
+    //free(buff[i]);
+  }  
   printf("the words total is %u \n",wordCount);
   fclose(fp);
   fclose(outputFP);
-  free(buff);
+  //free(buff);
   if(time) {
     end = clock();
     int cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("The time in seconds is %d", cpu_time_used);
   }
+  /*
+  for(int i = 0; i < 3; i++) {
+    printf("The %d th item is %s \n", i, buff[i]);
+  }
+  */
   return;
 
 };
@@ -115,7 +139,7 @@ int main(int argc, char * argv[]) {
       //printf("the compare results is %d",strcmp(mode1, "-t"));
 
       if (strcmp(mode1, "-s") == 0) {
-        //readSortWrite();
+        readSortWrite(inputFile, outputFile, 1);
       } else if (strcmp(mode1, "-t") == 0) {
         readWrite(inputFile, outputFile, 1);
       } else {
