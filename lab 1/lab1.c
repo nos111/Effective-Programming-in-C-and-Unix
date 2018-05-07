@@ -14,7 +14,8 @@ void readWrite(char * inputfile, char * outputfile, int time) {
   FILE * fp = fopen(inputfile, "r");
   FILE * outputFP = fopen(outputfile, "w");
   if(fp == NULL || outputFP == NULL) {
-    printf("There was an error reading from source file");
+    printf("There was an error reading from source file \n");
+    return;
   }
   char ** buff= (char**)malloc(sizeof(char*)* cellsNum);
   int temp = 0;
@@ -66,7 +67,8 @@ void readSortWrite(char * inputfile, char * outputfile, int time) {
   FILE * fp = fopen(inputfile, "r");
   FILE * outputFP = fopen(outputfile, "w");
   if(fp == NULL || outputFP == NULL) {
-    printf("There was an error reading from source file");
+    printf("There was an error reading from source file \n");
+    return;
   }
   char ** buff = (char**)malloc(sizeof(char*)* cellsNum);
   int temp = 0;
@@ -122,7 +124,7 @@ int main(int argc, char * argv[]) {
       mode1 = argv[1];
 
       if (strcmp(mode1, "-s") == 0) {
-        readSortWrite(inputFile, outputFile, 1);
+        readSortWrite(inputFile, outputFile, 0);
       } else if (strcmp(mode1, "-t") == 0) {
         readWrite(inputFile, outputFile, 1);
       } else {
@@ -134,6 +136,11 @@ int main(int argc, char * argv[]) {
       outputFile = argv[2];
       mode1 = argv[3];
       mode2 = argv[4];
+      if ( ((strcmp(mode1, "-s") == 0) && (strcmp(mode2, "-t") == 0)) || ((strcmp(mode1, "-t") == 0) && (strcmp(mode2, "-s") == 0)) ) {
+        readSortWrite(inputFile, outputFile, 1);
+      } else {
+        printf("Unknown modes \n");
+      }
       break;
     default:
       printf("Arguments error; <mode> <mode> <inputfile> <outputfile> \n");
