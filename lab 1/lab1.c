@@ -78,13 +78,13 @@ void readSortWrite(char * inputfile, char * outputfile, int time) {
   }
   char ** buff = (char**)malloc(sizeof(char*)* cellsNum);
   int temp = 0;
-  char * tempWord = (char*) malloc(100);
   for(size_t i = 0;i < cellsNum ;i++){
     wordCount++;
-    buff[i] = (char*)malloc(100);
-    
+    buff[i] = (char*)malloc(sizeof(char*));
+    char * tempWord = (char*) malloc(100);
     //read a word
     temp = fscanf(fp,"%s", tempWord);
+    
     if(temp <= 0) {
       //free(buff[i]);
       break;
@@ -95,27 +95,24 @@ void readSortWrite(char * inputfile, char * outputfile, int time) {
     //copy the array
     copyArrayItems(buff, insertLocation, wordCount);
     //insert
+    //memcpy(buff[insertLocation], tempWord, 100);
     buff[insertLocation] = tempWord;
+    
   }
   //write to the file when done
   for(size_t i = 0; i < wordCount; i++) {
+    //printf("writing %s \n", buff[i]);
     fprintf(outputFP, "%s \n", buff[i]);
-    //free(buff[i]);
+    free(buff[i]);
   }  
   printf("the words total is %u \n",wordCount);
   fclose(fp);
   fclose(outputFP);
-  //free(buff);
+  free(buff);
   if(time) {
     end = clock();
     int cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("The time in seconds is %d", cpu_time_used);
-  }
-  /*
-  for(int i = 0; i < 3; i++) {
-    printf("The %d th item is %s \n", i, buff[i]);
-  }
-  */
   return;
 
 };
@@ -154,10 +151,7 @@ int main(int argc, char * argv[]) {
       break;
     default:
       printf("Arguments error; <mode> <mode> <inputfile> <outputfile> \n");
-
-
   }
-
   return 0;
 
 }
