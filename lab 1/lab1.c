@@ -26,7 +26,6 @@ void readWrite(char * inputfile, char * outputfile, int time) {
       free(buff[i]);
       break;
     }
-    //printf(" %d ", temp);
     fprintf(outputFP, "%s \n", buff[i]);
     free(buff[i]);
   }
@@ -40,15 +39,8 @@ void readWrite(char * inputfile, char * outputfile, int time) {
     printf("The time in seconds is %d", cpu_time_used);
   }
   return;
-  /*
-  int i = 0;
-  while(fscanf(fp,"%s", buff) > 0 ) {
-    i++;
-  }
-  printf("the words total is %u \n",i);
-  */
-  
 };
+
 int findInsertLocation(char ** wordsArray, char * wordToInsert, int arrLenght){
   for(size_t i = 0; i < arrLenght; i++) {
     if(strcmp(wordToInsert, wordsArray[i]) <= 0) return i;
@@ -84,24 +76,19 @@ void readSortWrite(char * inputfile, char * outputfile, int time) {
     char * tempWord = (char*) malloc(100);
     //read a word
     temp = fscanf(fp,"%s", tempWord);
-    
     if(temp <= 0) {
-      //free(buff[i]);
       break;
     }
     //find insert location
     int insertLocation = findInsertLocation(buff, tempWord, wordCount);
-    //printf("The insert location is %d \n", insertLocation);
     //copy the array
     copyArrayItems(buff, insertLocation, wordCount);
     //insert
-    //memcpy(buff[insertLocation], tempWord, 100);
     buff[insertLocation] = tempWord;
     
   }
   //write to the file when done
   for(size_t i = 0; i < wordCount; i++) {
-    //printf("writing %s \n", buff[i]);
     fprintf(outputFP, "%s \n", buff[i]);
     free(buff[i]);
   }  
@@ -113,8 +100,8 @@ void readSortWrite(char * inputfile, char * outputfile, int time) {
     end = clock();
     int cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("The time in seconds is %d", cpu_time_used);
+  }
   return;
-
 };
 
 int main(int argc, char * argv[]) {
@@ -133,7 +120,6 @@ int main(int argc, char * argv[]) {
       inputFile = argv[2];
       outputFile = argv[3];
       mode1 = argv[1];
-      //printf("the compare results is %d",strcmp(mode1, "-t"));
 
       if (strcmp(mode1, "-s") == 0) {
         readSortWrite(inputFile, outputFile, 1);
