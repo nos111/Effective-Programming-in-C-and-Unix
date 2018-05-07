@@ -132,10 +132,10 @@ int main(int argc, char * argv[]) {
       }
       break;
     case 5: 
-      inputFile = argv[1];
-      outputFile = argv[2];
-      mode1 = argv[3];
-      mode2 = argv[4];
+      inputFile = argv[3];
+      outputFile = argv[4];
+      mode1 = argv[1];
+      mode2 = argv[2];
       if ( ((strcmp(mode1, "-s") == 0) && (strcmp(mode2, "-t") == 0)) || ((strcmp(mode1, "-t") == 0) && (strcmp(mode2, "-s") == 0)) ) {
         readSortWrite(inputFile, outputFile, 1);
       } else {
